@@ -1,0 +1,271 @@
+{
+  "ClassName": "DeatkKnight",
+  "Mode": "Grind",
+  "RemoteV3": {
+    "Enabled": true,
+    "Host": "127.0.0.1",
+    "Port": 47111
+  },
+  "PathFilename": "_pack\\70-80\\Howling Fjord\\67-72.json",
+  "Log": false,
+  "Loot": true,
+  "KeyboardOnly": true,
+  "PathThereAndBack": false,
+  "PathReduceSteps": true,
+  "NPCMaxLevels_Below": 6,
+  "NPCMaxLevels_Above": 3,
+  "Blacklist": ["Disturbed Soul", "Lost Drakkari Spirit", "Drakkari Skullcrusher"],
+  "IntVariables": {
+    "MIN_HP_FOOD%": 40,
+    "MIN_RUNE_TO_DUMP": 40,
+    "ITEM_CORPSE_DUST": 37201,
+    "Debuff_Frost Fever": 237522,
+    "Debuff_Blood Plague": 237514,
+    "MIN_TIME_REFRESH": 3500,
+    "USE_TRINKET_1": 1,
+    "USE_TRINKET_2": 1
+  },
+  "Form": {
+    "Sequence": [
+      {
+        "Name": "Blood Presence",
+        "Key": "N1",
+        "Form": "DeathKnight_Blood_Presence"
+      },
+      {
+        "Name": "Frost Presence",
+        "Key": "N2",
+        "Form": "DeathKnight_Frost_Presence"
+      },
+      {
+        "Name": "Unholy Presence",
+        "Key": "N3",
+        "Form": "DeathKnight_Unholy_Presence"
+      }
+    ]
+  },
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Icy Touch",
+        "Key": "2",
+        "WhenUsable": true,
+        "Requirements": [
+          "!TargetCastingSpell",
+          "!Frost Fever",
+          "SpellInRange:0"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Death Grip",
+        "Key": "F5",
+        "WhenUsable": true,
+        "Requirements": [
+          "SpellInRange:2",
+          "!Falling"
+        ]
+      },
+      {
+        "Name": "Dark Command",
+        "Key": "7",
+        "WhenUsable": true,
+        "Requirements": [
+          "SpellInRange:2",
+          "!Falling",
+          "!InCombat"
+        ]
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Mind Freeze",
+        "Key": "F12",
+        "WhenUsable": true,
+        "Requirements": [
+          "InMeleeRange",
+          "TargetCastingSpell"
+        ]
+      },
+      {
+        "Name": "Anti-Magic Shell",
+        "Key": "N4",
+        "WhenUsable": true,
+        "Requirements": [
+          "TargetCastingSpell"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Icy Touch",
+        "Key": "2",
+        "WhenUsable": true,
+        "Requirements": [
+          "!Frost Fever",
+          "SpellInRange:0"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Plague Strike",
+        "Key": "3",
+        "WhenUsable": true,
+        "Requirements": [
+          "!Blood Plague",
+          "InMeleeRange"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Obliterate",
+        "Key": "1",
+        "WhenUsable": true,
+        "Requirements": [
+          "Blood Plague",
+          "Frost Fever",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "dnd",
+        "Key": "F7",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount > 1",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Hungering Cold",
+        "Key": "F1",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount > 1",
+          "InMeleeRange",
+          "RunicPower >= 40"
+        ]
+      },
+      {
+        "Name": "Pillar of Frost",
+        "Key": "5",
+        "WhenUsable": true,
+        "Cooldown": 60000
+      },
+      {
+        "Name": "Blood Boil",
+        "Key": "F8",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount > 1",
+          "Frost Fever",
+          "Blood Plague",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Howling Blast",
+        "Key": "E",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount > 1"
+        ]
+      },
+      {
+        "Name": "Frost Strike",
+        "Key": "4",
+        "WhenUsable": true,
+        "Requirements": [
+          "RunicPower >= 40",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Pestilence",
+        "Key": "F9",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount > 1",
+          "TargetHealth% <= 50 && (Frost Fever || Blood Plague)",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Death Coil",
+        "Key": "F10",
+        "WhenUsable": true,
+        "Requirements": [
+          "RunicPower >= 60",
+          "SpellInRange:1"
+        ]
+      },
+      {
+        "Name": "Pestilence",
+        "Key": "F9",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount == 1",
+          "Frost Fever && Blood Plague && (Debuff_Frost Fever < MIN_TIME_REFRESH || Debuff_Blood Plague < MIN_TIME_REFRESH)",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirement": "!AutoAttacking"
+      },
+      {
+        "Name": "Approach",
+        "Log": true
+      }
+    ]
+  },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Cost": 3.1,
+        "Name": "Horn of Winter",
+        "Key": "8",
+        "InCombat": "i dont care",
+        "WhenUsable": true,
+        "Requirements": [
+          "!Horn of Winter || (CD_Horn of Winter <= GCD && TargetAlive && TargetHostile)",
+          "!Mounted"
+        ]
+      },
+      {
+        "Name": "Mount",
+        "Key": "N0",
+        "WhenUsable": true,
+        "HasCastBar": true,
+        "BeforeCastStop": true,
+        "AfterCastWaitBuff": true,
+        "AfterCastWaitCastbar": true,
+        "AfterCastDelay": 3000,
+        "Requirement": "!Mounted && !InCombat && Health% > 60"
+      },
+      {
+        "Name": "Food",
+        "Key": "0",
+        "Requirement": "Health%<50",
+        "WhenUsable": true,
+        "BeforeCastStop": true,
+        "AfterCastWaitBuff": true,
+        "AfterCastDelay": 3000,
+        "Cooldown": 5000
+      }
+    ]
+  },
+  "Wait": {
+    "Sequence": [
+      {
+        "Name": "Heal",
+        "Requirement": "!Mounted && !InCombat && Health% < 50"
+      },
+      {
+        "Name": "MountWait",
+        "Requirement": "!Mounted && !InCombat && Health% > 60"
+      }
+    ]
+}
+}

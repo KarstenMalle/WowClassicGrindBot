@@ -10,13 +10,13 @@ namespace Game;
 
 public sealed class WowProcess
 {
-    private static readonly string[] defaultProcessNames = [
+    private static readonly string[] defaultProcessNames = new string[] {
         "Wow",
         "WowClassic",
         "WowClassicT",
         "Wow-64",
         "WowClassicB"
-    ];
+    };
 
     private readonly Thread thread;
     private readonly CancellationToken token;

@@ -1,0 +1,286 @@
+{
+  "ClassName": "DeatkKnight",
+  "Loot": true,
+  "KeyboardOnly": true,
+  "PathFilename": "_pack\\70-80\\Howling Fjord\\67-72.json",
+  "PathReduceSteps": true,
+  "PathThereAndBack": false,
+  "NPCMaxLevels_Below": 20,
+  "NPCMaxLevels_Above": 4,
+  "Jump": {
+    "PressDuration": 200
+  },
+  "IntVariables": {
+    "MIN_HP_FOOD%": 40,
+    "MIN_RUNE_TO_DUMP": 40,
+    "ITEM_CORPSE_DUST": 37201,
+    "Debuff_Frost Fever": 237522,
+    "Debuff_Blood Plague": 237514,
+    "MIN_TIME_REFRESH": 3500,
+    "USE_TRINKET_1": 1,
+    "USE_TRINKET_2": 1
+  },
+  "Form": {
+    "Sequence": [
+      {
+        "Name": "Blood Presence",
+        "Key": "N1",
+        "Form": "DeathKnight_Blood_Presence"
+      },
+      {
+        "Name": "Frost Presence",
+        "Key": "N2",
+        "Form": "DeathKnight_Frost_Presence"
+      }
+    ]
+  },
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Icy Touch",
+        "Key": "4",
+        "WhenUsable": true,
+        "Requirements": [
+          "!TargetCastingSpell",
+          "!Frost Fever",
+          "SpellInRange:0"
+        ],
+        "AfterCastAuraExpected": true,
+        "AfterCastWaitCombat": true
+      },
+      {
+        "Name": "Death Grip",
+        "Key": "F5",
+        "WhenUsable": true,
+        "Requirements": [
+          "SpellInRange:2",
+          "!Falling"
+        ],
+        "AfterCastWaitCombat": true,
+        "AfterCastWaitMeleeRange": true
+      },
+      {
+        "Name": "Dark Command",
+        "Key": "7",
+        "WhenUsable": true,
+        "Requirements": [
+          "SpellInRange:2",
+          "!Falling",
+          "!InCombat"
+        ],
+        "AfterCastWaitCombat": true,
+        "AfterCastWaitMeleeRange": true
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Unholy Frenzy",
+        "Key": "F2",
+        "WhenUsable": true,
+        "Cooldown": 30000,
+        "Requirements": [
+          "Has Pet",
+          "Talent:Unholy Frenzy"
+        ]
+      },
+      {
+        "Name": "Mind Freeze",
+        "Key": "F12",
+        "WhenUsable": true,
+        "Requirements": [
+          "InMeleeRange",
+          "TargetCastingSpell"
+        ]
+      },
+      {
+        "Name": "Anti-Magic Shell",
+        "Key": "N4",
+        "WhenUsable": true,
+        "Requirements": [
+          "TargetCastingSpell"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Rune Tap",
+        "Key": "5",
+        "WhenUsable": true,
+        "Requirements": [
+          "BloodRune <= 1",
+          "Health% < 60"
+        ]
+      },
+      {
+        "Name": "Blood Tap",
+        "Key": "N5",
+        "WhenUsable": true,
+        "Requirements": [
+          "!Blood Tap",
+          "BloodRune <= 1"
+        ]
+      },
+      {
+        "Name": "Death Strike",
+        "Key": "1",
+        "WhenUsable": true,
+        "Requirements": [
+          "Health% < 30"
+        ]
+      },
+      {
+        "Name": "dnd",
+        "Key": "F7",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount > 1",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Blood Boil",
+        "Key": "F8",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount > 1",
+          "Frost Fever",
+          "Blood Plague",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Icy Touch",
+        "Key": "4",
+        "WhenUsable": true,
+        "Requirements": [
+          "!Frost Fever",
+          "SpellInRange:0"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Heart Strike",
+        "Key": "2",
+        "WhenUsable": true,
+        "Cooldown": 2000,
+        "Requirements": [
+          "MobCount < 2",
+          "Debuff_Frost Fever > MIN_TIME_REFRESH && Debuff_Blood Plague > MIN_TIME_REFRESH",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Pestilence",
+        "Key": "F9",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount > 1",
+          "TargetHealth% <= 50 && (Frost Fever || Blood Plague)",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Death Coil",
+        "Key": "F10",
+        "WhenUsable": true,
+        "Requirements": [
+          "RunicPower >= 60",
+          "SpellInRange:1"
+        ]
+      },
+      {
+        "Name": "Plague Strike",
+        "Key": "3",
+        "WhenUsable": true,
+        "Requirements": [
+          "!Blood Plague",
+          "InMeleeRange"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Dancing Rune Weapon",
+        "Key": "F4",
+        "WhenUsable": true,
+        "Requirements": [
+          "TotalRune == 0",
+          "RunicPower <= 60",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "Pestilence",
+        "Key": "F9",
+        "WhenUsable": true,
+        "Requirements": [
+          "MobCount == 1",
+          "Frost Fever && Blood Plague && (Debuff_Frost Fever < MIN_TIME_REFRESH || Debuff_Blood Plague < MIN_TIME_REFRESH)",
+          "InMeleeRange"
+        ]
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirements": [
+          "!AutoAttacking"
+        ]
+      },
+      {
+        "Name": "Approach",
+        "Log": false
+      }
+    ]
+  },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Cost": 3.1,
+        "Name": "Horn of Winter",
+        "Key": "8",
+        "InCombat": "i dont care",
+        "WhenUsable": true,
+        "Requirements": [
+          "!Horn of Winter || (CD_Horn of Winter <= GCD && TargetAlive && TargetHostile)",
+          "!Mounted"
+        ]
+      },
+      {
+        "Name": "Mount",
+        "Key": "N0",
+        "WhenUsable": true,
+        "HasCastBar": true,
+        "BeforeCastStop": true,
+        "AfterCastWaitBuff": true,
+        "AfterCastWaitCastbar": true,
+        "AfterCastDelay": 3000,
+        "Requirement": "!Mounted && !InCombat && Health% > 60"
+      },
+      {
+        "Cost": 3.2,
+        "Name": "Raise Dead",
+        "Key": "F3",
+        "InCombat": "i dont care",
+        "WhenUsable": true,
+        "Requirements": [
+          "!Has Pet",
+          "!Mounted",
+          "BagItem:ITEM_CORPSE_DUST"
+        ]
+      },
+      
+      {
+        "Name": "Food",
+        "Key": "=",
+        "Requirement": "Health% < MIN_HP_FOOD%"
+      }
+    ]
+  },
+  "Wait": {
+    "Sequence": [
+      {
+        "Name": "MountWait",
+        "Requirement": "!Mounted && !InCombat && Health% > 60"
+      }
+    ]
+}
+}

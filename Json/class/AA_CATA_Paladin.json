@@ -1,0 +1,293 @@
+{
+  "ClassName": "Paladin",
+  "Mode": "Grind",
+  "RemoteV3": {
+    "Enabled": true,
+    "Host": "127.0.0.1",
+    "Port": 47111
+  },
+  "PathFilename": "_pack\\80-85\\80-82.json",
+  "Log": false,
+  "Loot": true,
+  "Skin": false,
+  "KeyboardOnly": true,
+  "PathThereAndBack": false,
+  "PathReduceSteps": true,
+  "NPCMaxLevels_Below": 6,
+  "NPCMaxLevels_Above": 3,
+  "Blacklist": ["Stonescale Matriarch", "Nemesis", "Fjord Crow", "Disturbed Soul", "Lost Drakkari Spirit", "Drakkari Skullcrusher"],
+  "IntVariables": {
+    "MIN_TARGET_HP%": 20,
+    "MIN_HP_BEFORE_HEAL%": 20,
+    "MIN_MANA%": 40,
+    "MIN_HP%": 40,
+    "CD_MIN_TARGET_HP%": 70,
+    "USE_TRINKET_1": 1,
+    "Buff_Art of War": 236246
+  },
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Judgement",
+        "Key": "3",
+        "WhenUsable": true,
+        "BeforeCastDelay": 200,
+        "Requirements": [
+          "SpellInRange:0"
+        ]
+      },
+      {
+        "Name": "Hand of Reckoning",
+        "Key": "8",
+        "WhenUsable": true,
+        "BeforeCastDelay": 200,
+        "Requirements": [
+          "SpellInRange:0"
+        ]
+      },
+      {
+        "Name": "Approach",
+        "Log": false
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Rebuke",
+        "Key": "9",
+        "WhenUsable": true,
+        "Requirements": [
+          "InMeleeRange",
+          "TargetCastingSpell"
+        ]
+      },
+      {
+        "Name": "Arcane Torrent",
+        "Key": "R",
+        "WhenUsable": true,
+        "Requirements": [
+          "InMeleeRange",
+          "TargetCastingSpell"
+        ]
+      },
+      {
+        "Name": "Divine Protection",
+        "Key": "F6",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true,
+        "Requirements": ["CD == 0", "InMeleeRange", "Health%<50"]
+      },
+      {
+        "Name": "Holy Light",
+        "HasCastBar": true,
+        "Key": "F4",
+        "Requirements": [
+          "Health% < 30",
+          "Blessing of Protection || Divine Shield || Divine Protection"
+        ]
+      },
+      {
+        "Name": "Hand of Protection",
+        "Key": "N8",
+        "WhenUsable": true,
+        "Requirements": [
+          "Health% < 20"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Judgement",
+        "Key": "3",
+        "WhenUsable": true,
+        "BeforeCastDelay": 200,
+        "Requirements": [
+          "SpellInRange:0"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Divine Plea",
+        "Key": "F1",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true,
+        "Requirements": ["Mana%<60"]
+      },
+      {
+        "Name": "Avenging Wrath",
+        "Key": "F7",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true,
+        "Requirements": ["CD_Avenging Wrath == 0"]
+      },
+      {
+        "Name": "Hammer of Justice",
+        "Key": "5",
+        "WhenUsable": true,
+        "Requirements": [
+          "Health%<70"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Hammer of Wrath",
+        "Key": "0",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Consecreation",
+        "Key": "6",
+        "WhenUsable": true,
+        "Cooldown": 8000,
+        "Requirements": [
+          "Mana% > MIN_MANA%",
+          "MobCount > 1"
+        ]
+      },
+      {
+        "Name": "Crusader Strike",
+        "Key": "1",
+        "WhenUsable": true,
+        "Requirements": [
+          "InMeleeRange",
+          "MobCount < 2"
+        ]
+      },
+      {
+        "Name": "Divine Storm",
+        "Key": "2",
+        "WhenUsable": true,
+        "Requirements": [
+          "InMeleeRange",
+          "MobCount > 1"
+        ]
+      },
+      {
+        "Name": "Templar's Verdict",
+        "Key": "4",
+        "WhenUsable": true,
+        "Requirements": [
+          "InMeleeRange",
+          "Holy Power > 1"
+        ]
+      },
+      {
+        "Name": "Zealotry",
+        "Key": "F8",
+        "WhenUsable": true,
+        "Requirements": [
+          "InMeleeRange",
+          "Holy Power > 2"
+        ]
+      },
+      {
+        "Name": "Exorcism",
+        "Key": "F2",
+        "WhenUsable": true,
+        "Requirements": [
+          "Buff_Art of War > 0"
+        ]
+      },
+      {
+        "Name": "Flash of Light",
+        "Key": "F3",
+        "WhenUsable": true,
+        "Requirements": [
+          "Health% < 70",
+          "Buff_Art of War > 0",
+          "CD_Exorcism > 0"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirement": "!AutoAttacking"
+      },
+      {
+        "Name": "Approach",
+        "Log": false
+      }
+    ]
+  },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Cost": 3,
+        "Name": "Seal of Righteousness",
+        "Key": "N2",
+        "Requirements": [
+          "!Mounted",
+          "!Seal of Righteousness"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Cost": 3,
+        "Name": "Retribution Aura",
+        "Key": "N4",
+        "InCombat": "i dont care",
+        "WhenUsable": true,
+        "BeforeCastDismount": false,
+        "Requirements": [
+          "!Mounted",
+          "!Form:Paladin_Retribution_Aura"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Crusader Aura",
+        "Key": "N5",
+        "WhenUsable": true,
+        "BeforeCastDismount": false,
+        "Requirements": [
+          "Mounted",
+          "!Form:Paladin_Crusader_Aura"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Blessing of Might",
+        "Key": "F11",
+        "Requirements": [
+          "!Mounted",
+          "!Blessing of Might"
+        ],
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "Food",
+        "Key": "0",
+        "Requirement": "Health%<50",
+        "WhenUsable": true,
+        "BeforeCastStop": true,
+        "AfterCastWaitBuff": true,
+        "AfterCastDelay": 3000,
+        "Cooldown": 5000
+      },
+      {
+        "Name": "Mount",
+        "Key": "N0",
+        "WhenUsable": true,
+        "HasCastBar": true,
+        "BeforeCastStop": true,
+        "AfterCastWaitBuff": true,
+        "AfterCastWaitCastbar": true,
+        "AfterCastDelay": 3000,
+        "Requirement": "!Mounted && !InCombat && Health% > 50"
+      }
+    ]
+  },
+  "Wait": {
+    "Sequence": [
+      {
+        "Name": "Heal",
+        "Requirement": "!Mounted && !InCombat && Health% < 50"
+      },
+      {
+        "Name": "MountWait",
+        "Requirement": "!Mounted && !InCombat && Health% > 50"
+      }
+    ]
+  }
+}

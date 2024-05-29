@@ -424,8 +424,7 @@ function DataToColor:areSpellsInRange()
     local inRange = 0
     local targetCount = #DataToColor.S.spellInRangeTarget
     for i = 1, targetCount do
-        local spellIconId = DataToColor.S.spellInRangeTarget[i]
-        local spellId = DataToColor.S.playerSpellBookIconToId[spellIconId] or spellIconId -- fallback to spellId
+        local spellId = DataToColor.S.spellInRangeTarget[i]
         local spellName = GetSpellInfo(spellId)
         if spellName ~= nil then
             if IsSpellInRange(spellName, DataToColor.C.unitTarget) == 1 then
@@ -438,9 +437,7 @@ function DataToColor:areSpellsInRange()
 
     for i = 1, #DataToColor.S.spellInRangeUnit do
         local data = DataToColor.S.spellInRangeUnit[i]
-        local spellId = DataToColor.S.playerSpellBookIconToId[data[1]]
-        local unit = data[2]
-        if spellId ~= nil and IsSpellInRange(GetSpellInfo(spellId), unit) == 1 then
+        if IsSpellInRange(GetSpellInfo(data[1]), data[2]) == 1 then
             inRange = inRange + (2 ^ (targetCount + i - 1))
         end
     end

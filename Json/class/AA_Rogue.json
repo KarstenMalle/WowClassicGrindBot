@@ -1,0 +1,181 @@
+{
+  "ClassName": "Rogue",
+  "PathFilename": "_pack\\70-80\\Howling Fjord\\67-72.json",
+  "Log": false,
+  "Loot": true,
+  "Skin": true,
+  "KeyboardOnly": true,
+  "PathThereAndBack": true,
+  "PathReduceSteps": true,
+  "NPCMaxLevels_Below": 6,
+  "NPCMaxLevels_Above": 3,
+  "Blacklist": ["Fjord Crow"],
+  "Pull": {
+    "Sequence": [
+      {
+        "Name": "Stealth",
+        "Key": "F1",
+        "WhenUsable": true,
+        "AfterCastWaitBuff": true,
+        "Requirements": ["not Stealth", "not InMeleeRange", "SpellInRange:0"]
+      },
+      {
+        "Name": "Ambush",
+        "Key": "N1",
+        "WhenUsable": true,
+        "Requirement": "Stealth&&InMeleeRange"
+      }
+    ]
+  },
+  "Combat": {
+    "Sequence": [
+      {
+        "Name": "Kick",
+        "Key": "N5",
+        "WhenUsable": true,
+        "Requirements": [
+          "InMeleeRange",
+          "TargetCastingSpell"
+        ]
+      },
+      {
+        "Name": "Killing Spree",
+        "Key": "F6",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true,
+        "Requirements": ["CD == 0", "InMeleeRange", "Energy < 30", "TargetHealth% > 60"]
+      },
+      {
+        "Name": "Blade Flurry",
+        "Key": "F4",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true,
+        "Requirements": ["CD == 0", "MobCount > 1", "InMeleeRange"]
+      },
+      {
+        "Name": "Adrenaline Rush",
+        "Key": "F5",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true,
+        "Requirements": ["CD == 0", "InMeleeRange"]
+      },
+      {
+        "Name": "Dismantle",
+        "Key": "F10",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true,
+        "Requirements": ["CD == 0", "InMeleeRange", "Health%<50"]
+      },
+      {
+        "Name": "Cloak of Shadows",
+        "Key": "F11",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true,
+        "Requirements": ["CD == 0", "Health%<80", "MobCount > 1"]
+      },
+      {
+        "Name": "Evasion",
+        "Key": "F12",
+        "WhenUsable": true,
+        "AfterCastAuraExpected": true,
+        "Requirements": ["CD == 0", "Health%<60 || MobCount > 1"]
+      },
+      {
+        "Name": "Slice and Dice",
+        "Key": "F2",
+        "AfterCastAuraExpected": true,
+        "Requirements": ["not Slice and Dice", "Combo Point>0"]
+      },
+      {
+        "Name": "Eviscerate",
+        "Key": "E",
+        "Requirements": ["LastMainHandMs<500", "Combo Point > 2"]
+      },
+      {
+        "Name": "Riposte",
+        "Key": "4",
+        "WhenUsable": true,
+        "Requirement": "LastMainHandMs<500"
+      },
+      {
+        "Name": "Sinister Strike",
+        "Key": "1",
+        "Requirement": "LastMainHandMs<500"
+      },
+      {
+        "Name": "AutoAttack",
+        "Requirement": "!AutoAttacking"
+      },
+      {
+        "Name": "Approach",
+        "Log": false
+      }
+    ]
+  },
+  "Adhoc": {
+    "Sequence": [
+      {
+        "Name": "potionhp",
+        "Key": "8",
+        "Requirement": "Health%<10",
+        "Cooldown": 60000,
+        "InCombat": "true",
+        "Log": false,
+        "Cost": 3
+      },
+      {
+        "Name": "Food",
+        "Key": "0",
+        "Requirement": "Health%<50",
+        "WhenUsable": true,
+        "BeforeCastStop": true,
+        "AfterCastDelay": 3000,
+        "Cooldown": 5000
+      },
+      {
+        "Name": "poisonmh",
+        "HasCastbar": true,
+        "Key": "F7",
+        "Requirement": "not HasMainHandEnchant",
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "poisonoh",
+        "HasCastbar": true,
+        "Key": "F8",
+        "Requirement": "not HasOffHandEnchant",
+        "AfterCastAuraExpected": true
+      },
+      {
+        "Name": "openstuff",
+        "Key": "F9",
+        "Cooldown": 30000,
+        "Requirements": ["BagItem:20768:1"],
+        "Log": false
+      },
+      {
+        "Name": "Mount",
+        "Key": "N0",
+        "WhenUsable": true,
+        "HasCastBar": true,
+        "BeforeCastStop": true,
+        "AfterCastWaitBuff": true,
+        "AfterCastWaitCastbar": true,
+        "AfterCastDelay": 3000,
+        "Requirement": "!Mounted && !InCombat && Health% > 50"
+      }
+    ]
+  },
+  "Wait": {
+    "Sequence": [
+      {
+        "Name": "Heal",
+        "Requirement": "!Mounted && !InCombat && Health% < 50"
+      },
+      {
+        "Name": "MountWait",
+        "Requirement": "!Mounted && !InCombat && Health% > 50"
+      }
+    ]
+  }
+}

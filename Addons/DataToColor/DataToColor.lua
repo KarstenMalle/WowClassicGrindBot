@@ -227,7 +227,6 @@ function DataToColor:OnInitialize()
     DataToColor:CreateFrames()
     DataToColor:RegisterSlashCommands()
 
-    DataToColor:PopulateSpellBookInfo()
     DataToColor:InitStorage()
 
     UIErrorsFrame:UnregisterEvent("UI_ERROR_MESSAGE")
@@ -253,7 +252,6 @@ end
 function DataToColor:Reset()
     DataToColor.S.playerSpellBookName = {}
     DataToColor.S.playerSpellBookId = {}
-    DataToColor.S.playerSpellBookIconId = {}
 
     DataToColor.playerGUID = UnitGUID(DataToColor.C.unitPlayer)
     DataToColor.petGUID = UnitGUID(DataToColor.C.unitPet)
@@ -309,7 +307,6 @@ function DataToColor:FushState()
 
     DataToColor:Reset()
 
-    DataToColor:PopulateSpellBookInfo()
     DataToColor:InitUpdateQueues()
 
     DataToColor:Print('Flush State')
@@ -392,7 +389,7 @@ function DataToColor:InitActionBarCostQueue()
     end
 end
 
-function DataToColor:PopulateSpellBookInfo()
+function DataToColor:InitSpellBookQueue()
     local num, type = 1, 1
     if GetNumSpellTabs == nil then
         while true do
@@ -403,10 +400,10 @@ function DataToColor:PopulateSpellBookInfo()
 
             if id ~= nil then
                 local texture = GetSpellBookItemTexture(num, type)
-                DataToColor.S.playerSpellBookId[id] = true
                 DataToColor.S.playerSpellBookName[texture] = name
-                DataToColor.S.playerSpellBookIconToId[texture] = id
+                DataToColor.S.playerSpellBookId[id] = true
 
+                DataToColor.spellBookQueue:push(id)
                 num = num + 1
             end
         end
@@ -414,27 +411,21 @@ function DataToColor:PopulateSpellBookInfo()
         for i = 1, GetNumSpellTabs() do
             local offset, numSlots = select(3, GetSpellTabInfo(i))
             for j = offset+1, offset+numSlots do
-                local name, _, id = GetSpellBookItemName(j, type)
+                local name, _, id = GetSpellBookItemName(num, type)
                 if not name then
                     break
                 end
 
                 if id ~= nil then
-                    local texture = GetSpellBookItemTexture(j, type)
-                    DataToColor.S.playerSpellBookId[id] = true
+                    local texture = GetSpellBookItemTexture(num, type)
                     DataToColor.S.playerSpellBookName[texture] = name
-                    DataToColor.S.playerSpellBookIconToId[texture] = id
+                    DataToColor.S.playerSpellBookId[id] = true
 
+                    DataToColor.spellBookQueue:push(id)
                     num = num + 1
                 end
             end
         end
-    end
-end
-
-function DataToColor:InitSpellBookQueue()
-    for id, _ in pairs(DataToColor.S.playerSpellBookId) do
-        DataToColor.spellBookQueue:push(id)
     end
 end
 

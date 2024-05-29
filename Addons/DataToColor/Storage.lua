@@ -12,7 +12,6 @@ DataToColor.S.playerAuraMap = {}
 
 DataToColor.S.playerSpellBookName = {}
 DataToColor.S.playerSpellBookId = {}
-DataToColor.S.playerSpellBookIconToId = {}
 
 function DataToColor:InitStorage()
     CreateSpellInRangeTarget()
@@ -25,95 +24,92 @@ function DataToColor:InitStorage()
     CreatePlayerAuraMap()
 end
 
--- Using spell IconId over SpellId
--- Since Cataclysm Spell Ranks have been removed
--- In special cases uses SpellId such as Shoot/Wand or Auto Shot
 function CreateSpellInRangeTarget()
     if DataToColor.C.CHARACTER_CLASS == "ROGUE" then
         DataToColor.S.spellInRangeTarget = {
-            136189, -- 1752, -- "Sinister Strike"
-            132324, -- 2764, -- "Throw"
-            132222, -- 3018, -- "Shoot" for classic -> 7918, -- "Shoot Gun"
+            1752, -- "Sinister Strike"
+            2764, -- "Throw"
+            3018, -- "Shoot" for classic -> 7918, -- "Shoot Gun"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "DRUID" then
         DataToColor.S.spellInRangeTarget = {
-            136006, -- 5176, -- "Wrath"
-            132114, -- 5211, -- "Bash"
-            132152, -- 1079, -- "Rip"
-            132136, -- 6807, -- "Maul"
-            136041, -- 5185, -- "Healing Touch"
-            136078, -- 1126, -- "Mark of the Wild"
-            136085, -- 8936, -- "Regrowth"
-            136081, -- 774, -- "Rejuvenation",
-            136104, -- 467, -- "Thorns"
+            5176, -- "Wrath"
+            5211, -- "Bash"
+            1079, -- "Rip"
+            6807, -- "Maul"
+            5185, -- "Healing Touch"
+            1126, -- "Mark of the Wild"
+            8936, -- "Regrowth"
+            774, -- "Rejuvenation",
+            467, -- "Thorns"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "WARRIOR" then
         DataToColor.S.spellInRangeTarget = {
-            132337, -- 100, -- "Charge"
-            132155, -- 772, -- "Rend"
-            132222, -- 3018, -- "Shoot" for classic -> 7918, -- "Shoot Gun"
-            132324, -- 2764, -- "Throw"
+            100, -- "Charge"
+            772, -- "Rend"
+            3018, -- "Shoot" for classic -> 7918, -- "Shoot Gun"
+            2764, -- "Throw"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "PRIEST" then
         DataToColor.S.spellInRangeTarget = {
-            136207, -- 589, -- "Shadow Word: Pain"
-            5019, -- "Shoot" -- special case changes with equipped weapon
-            136208, -- 15407, -- "Mind Flay"
-            136224, -- 8092, -- "Mind Blast"
-            135924, -- 585, -- "Smite"
-            135898, -- 14752, -- "Divine Spirit"
-            135987, -- 1243, -- "Power World: Fortitude"
-            135940, -- 17, -- Power Word: Shield
-            135929, -- 2050, -- "Lesser Heal"
-            135944, -- 33076, -- "Prayer of Mending"
-            135953, -- 139, -- "Renew"
-            136121, -- 976, -- "Shadow Protection"
+            589, -- "Shadow Word: Pain"
+            5019, -- "Shoot"
+            15407, -- "Mind Flay"
+            8092, -- "Mind Blast"
+            585, -- "Smite"
+            14752, -- "Divine Spirit"
+            1243, -- "Power World: Fortitude"
+            17, -- Power Word: Shield
+            2050, -- "Lesser Heal"
+            33076, -- "Prayer of Mending"
+            139, -- "Renew"
+            976, -- "Shadow Protection"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "PALADIN" then
         DataToColor.S.spellInRangeTarget = {
-            135959, -- 20271, -- "Judgement" / "Judgement of Light"
-            135903, -- 879, -- "Exorcism"
-            135907, -- 19750, -- "Flash Heal"
-            135920, -- 635, -- "Holy Light"
-            135906, -- 19740, -- "Blessing of Might"
-            135908, -- 25782, -- "Greater Blessing of Might"
+            20271, -- "Judgement" / "Judgement of Light"
+            879, -- "Exorcism"
+            19750, -- "Flash Heal"
+            635, -- "Holy Light"
+            19740, -- "Blessing of Might"
+            25782, -- "Greater Blessing of Might"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "MAGE" then
         DataToColor.S.spellInRangeTarget = {
-            135812, -- 133, -- "Fireball"
-            5019, -- "Shoot" -- special case changes with equipped weapon
-            135808, -- 11366, -- "Pyroblast"
-            135846, -- 116, -- "Frostbolt"
-            135807, -- 2136, -- "Fire Blast"
+            133, -- "Fireball"
+            5019, -- "Shoot"
+            11366, -- "Pyroblast"
+            116, -- "Frostbolt"
+            2136, -- "Fire Blast"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "HUNTER" then
         DataToColor.S.spellInRangeTarget = {
-            132223, -- 2973, -- "Raptor Strike"
-            75, -- "Auto Shot" special case icon updates based on weapon so use SpellId
-            132204, -- 1978, -- "Serpent Sting"
+            2973, -- "Raptor Strike"
+            75, -- "Auto Shot"
+            1978, -- "Serpent Sting"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "WARLOCK" then
         DataToColor.S.spellInRangeTarget = {
-            136197, -- 686, -- "Shadow Bolt",
-            5019, -- "Shoot" -- special case changes with equipped weapon
+            686, -- "Shadow Bolt",
+            5019, -- "Shoot"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "SHAMAN" then
         DataToColor.S.spellInRangeTarget = {
-            136048, -- 403, -- "Lightning Bolt",
-            136026, -- 8042, -- "Earth Shock"
-            136052, -- 331, -- "Healing Wave"
-            136043, -- 8004, -- "Lesser Healing Wave"
-            136148, -- 131, -- "Water Breathing"
-            136042, -- 1064, -- "Chain Heal"
-            136089, -- 974, -- "Earth Shield"
+            403, -- "Lightning Bolt",
+            8042, -- "Earth Shock"
+            331, -- "Healing Wave"
+            8004, -- "Lesser Healing Wave"
+            131, -- "Water Breathing"
+            1064, -- "Chain Heal"
+            974, -- "Earth Shield"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "DEATHKNIGHT" then
         DataToColor.S.spellInRangeTarget = {
-            237526, -- 49903, -- "Icy Touch"
-            136145, -- 49893, -- "Death Coil"
-            237532, -- 49576, -- "Death Grip"
-            136088, -- 56222, -- "Dark Command",
-            136119, -- 46584 -- "Raise Dead"
+            49903, -- "Icy Touch"
+            49893, -- "Death Coil"
+            49576, -- "Death Grip"
+            56222, -- "Dark Command",
+            46584 -- "Raise Dead"
         }
     end
 end
@@ -121,11 +117,11 @@ end
 function CreateSpellInRangeUnit()
     if DataToColor.C.CHARACTER_CLASS == "HUNTER" then
         DataToColor.S.spellInRangeUnit = {
-            { 132165, DataToColor.C.unitPet } -- 6991 "Feed pet"
+            { 6991, DataToColor.C.unitPet } -- "Feed pet"
         }
     elseif DataToColor.C.CHARACTER_CLASS == "WARLOCK" then
         DataToColor.S.spellInRangeUnit = {
-            { 136168, DataToColor.C.unitPet }, -- 755 "Health Funnel"
+            { 755, DataToColor.C.unitPet }, -- "Health Funnel"
         }
     end
 end
